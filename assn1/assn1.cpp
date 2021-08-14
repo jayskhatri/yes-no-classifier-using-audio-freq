@@ -10,6 +10,7 @@
 #include<cmath>
 
 //constants
+//threshold multiplier value is taken after tuning
 const int noFrames = 150, thrsld_multiplier = 5;
 const double limit = 5000.0;
 
@@ -89,6 +90,7 @@ void normalize_data(char* inputFileName, char* outputFileName){
 
     //removing the output file, if already exists
     remove(outputFileName);
+
     op = fopen(outputFileName, "w");
     if(op == NULL){
         printf("Error opening file\n");
@@ -177,8 +179,6 @@ void processWord(long int word_s, long int word_e, double energy[], double zcr[]
         }
     }
 
-    //printf("\nfricative cnt: %d, size: %d\ns", fctv_cnt, size);
-
     //decision
     if(fctv_cnt >= size * 0.25)
 		printf("----> Yes\n");
@@ -197,9 +197,10 @@ void word_seggregation(double* ambAvg, char* inputFileName){
      * word_end: marker for index of the last observation of the word
      * lastIndex tracks the last index where the marker should be placed for word
     */
-    long int word_start = -1, word_end = -1, lastIndex = 0, n=0, total_frame = 0;
+    long int word_start = -1, word_end = -1, lastIndex = 0, n=0, total_frame = 0, i=0;
     //helps for calculating zcr
     double prev_x = 0, en = 0, z = 0, x;
+	int totalWord = 0;
 
     ip = fopen(inputFileName, "r");
 	if(ip == NULL){
@@ -220,8 +221,7 @@ void word_seggregation(double* ambAvg, char* inputFileName){
                     total_frame++;
                     energy[lastIndex] = en;
                     zcr[lastIndex++] = z;
-					//printf("energy: %lf, zcr: %lf\n", energy[lastIndex], energy[lastIndex-1]);
-                    en = 0.0; 
+			        en = 0.0; 
                     z = 0.0; 
                     n = 0;
                 }
@@ -237,18 +237,13 @@ void word_seggregation(double* ambAvg, char* inputFileName){
 
     printf("total frames: %ld\n\n", lastIndex);
 	printf("Recognized words\n");
-	long int i = 0;
-	int totalWord = 0;
+	
     for( ; i<lastIndex-3; ++i){
 		if(word_start == -1 && word_end == -1 && energy[i+1] > ambAvg[0] * thrsld_multiplier && energy[i+2] > ambAvg[0] * thrsld_multiplier && energy[i+3] > ambAvg[0] * thrsld_multiplier){
-			//printf("start: i: %ld, ambience[0]: %lf, x300: %lf, en[i+1]: %lf, en[i+2]: %lf, en[i+3]: %lf\n", i, ambAvg[0], ambAvg[0] * thrsld_multiplier, energy[i+1], energy[i+2], energy[i+3]);
-			
-            //marking word start
+			//marking word start
             word_start = i;
 		}
 		else if(word_start != -1 && word_end == -1 && energy[i+1] <= ambAvg[0] * thrsld_multiplier && energy[i+2] <= ambAvg[0] * thrsld_multiplier && energy[i+3] <= ambAvg[0] * thrsld_multiplier){
-			//printf("\nend: i: %ld, ambience[0]: %lf, x multplr %lf, en[i+1]: %lf, en[i+2]: %lf, en[i+3]: %lf\n", i, ambAvg[0], ambAvg[0] * thrsld_multiplier, energy[i+1], energy[i+2], energy[i+3]);
-			
             //marking word end
             word_end = i;
 			//printf("start : %ld, end: %ld, energy at start: %lf & end: %lf\nword_start: %ld, word_end: %ld", word_start*noFrames, word_end*noFrames, energy[word_start], energy[word_end], word_start, word_end);
@@ -261,20 +256,15 @@ void word_seggregation(double* ambAvg, char* inputFileName){
 			word_end = -1;
 		}
 	}
-
-	// printf("\nEnergy\n");
-	// for(int i=0; i<lastIndex; i++){
-	//  	printf("%d: %lf\n", i, energy[i]);
-	// }
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
     //setup global values according to input
-	setupGlobal("yes_no.txt");
+	setupGlobal("provided_yes_no.txt");
 
     //normalizing the input word data
-    normalize_data("yes_no.txt", "normalized_yes_no.txt");
+    normalize_data("provided_yes_no.txt", "normalized_yes_no.txt");
 
     //normalizing the ambience data
     normalize_data("ambience.txt", "normalized_ambience.txt");
