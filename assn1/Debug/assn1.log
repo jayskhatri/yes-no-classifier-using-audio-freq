@@ -1,31 +1,31 @@
-﻿Build started 14-08-2021 15:44:05.
-     1>Project "C:\Users\jaykh\Documents\Visual Studio 2010\Projects\assn1\assn1\assn1.vcxproj" on node 2 (build target(s)).
+﻿Build started 14-08-2021 20:22:11.
+     1>Project "C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\assn1\assn1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\assn1.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\assn1.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt assn1.cpp
          assn1.cpp
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(26): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(28): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(48): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(52): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(76): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(84): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(84): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(92): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(113): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(130): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(107): warning C4101: 'op' : unreferenced local variable
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(177): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(124): warning C4101: 'op' : unreferenced local variable
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(204): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(242): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(292): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
-     1>c:\users\jaykh\documents\visual studio 2010\projects\assn1\assn1\assn1.cpp(41): warning C4715: 'getDCShift' : not all control paths return a value
+     1>c:\users\jaykh\documents\visual studio 2010\projects\yes-no-classifier-using-audio-freq\assn1\assn1.cpp(43): warning C4715: 'getDCShift' : not all control paths return a value
        ManifestResourceCompile:
          All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jaykh\Documents\Visual Studio 2010\Projects\assn1\Debug\assn1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\assn1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\jaykh\Documents\Visual Studio 2010\Projects\assn1\Debug\assn1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jaykh\Documents\Visual Studio 2010\Projects\assn1\Debug\assn1.lib" /MACHINE:X86 Debug\assn1.exe.embed.manifest.res
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\Debug\assn1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\assn1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\Debug\assn1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\Debug\assn1.lib" /MACHINE:X86 Debug\assn1.exe.embed.manifest.res
          Debug\assn1.obj
          Debug\stdafx.obj
        Manifest:
@@ -33,12 +33,12 @@
          All outputs are up-to-date.
        LinkEmbedManifest:
          All outputs are up-to-date.
-         assn1.vcxproj -> C:\Users\jaykh\Documents\Visual Studio 2010\Projects\assn1\Debug\assn1.exe
+         assn1.vcxproj -> C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\Debug\assn1.exe
        FinalizeBuildStatus:
          Deleting file "Debug\assn1.unsuccessfulbuild".
          Touching "Debug\assn1.lastbuildstate".
-     1>Done Building Project "C:\Users\jaykh\Documents\Visual Studio 2010\Projects\assn1\assn1\assn1.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\assn1\assn1.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.52
+Time Elapsed 00:00:00.51

@@ -10,7 +10,7 @@
 #include<cmath>
 
 //constants
-const int noFrames = 100, thrsld_multiplier = 5;
+const int noFrames = 150, thrsld_multiplier = 5;
 const double limit = 5000.0;
 
 //global variables
@@ -47,7 +47,7 @@ double getDCShift(){
 void setupGlobal(char* filename){
     FILE *fp;
     long int totalSample = 0;
-    char line[100];
+    char line[80];
 
     fp = fopen(filename, "r");
     if(fp == NULL){
@@ -58,7 +58,7 @@ void setupGlobal(char* filename){
     //get max value
     max = 0;
     while(!feof(fp)){
-        fgets(line, 100, fp);
+        fgets(line, 80, fp);
         if(!isalpha(line[0])){
             totalSample++;
             if(max < abs(atoi(line)))
@@ -79,7 +79,7 @@ void normalize_data(char* inputFileName, char* outputFileName){
 
     FILE *fp, *op;
     long int totalSample = 0;
-    char line[100];
+    char line[80];
 
     fp = fopen(inputFileName, "r");
     if(fp == NULL){
@@ -97,11 +97,12 @@ void normalize_data(char* inputFileName, char* outputFileName){
 
     //reading the values from input file, normalizing it and writing it to output file
     while(!feof(fp)){
-        fgets(line, 100, fp);
+        fgets(line, 80, fp);
         
         //input file may contain header, so we skip it
         if(!isalpha(line[0])){
             int x = atoi(line);
+			//normalizing the value
             double normalizedX = floor((x-dcShift)*nFactor);
             if(abs(normalizedX) > 1)
                 fprintf(op, "%d\n", (int)normalizedX);
@@ -110,7 +111,7 @@ void normalize_data(char* inputFileName, char* outputFileName){
 
     //printing the properties we used to normalize the file 
     printf("normalization of file %s complete with following properties\n", inputFileName);
-    printf("max: %ld, nFactor: %lf, dcsShift: %lf\n", max, nFactor, dcShift);
+    printf("max: %ld, nFactor: %lf, dcsShift: %lf\n\n", max, nFactor, dcShift);
 
     //closing the files
     fclose(fp);
@@ -123,7 +124,7 @@ double* countAvgAmbience(char* inputFileName){
     FILE *fp, *op;
     long int total_frame = 0;
     int n = 0;
-    char line[100];
+    char line[80];
     double energy = 0.0, zcr = 0.0, x, prev_x = 0.0;
 
     fp = fopen(inputFileName, "r");
@@ -138,7 +139,7 @@ double* countAvgAmbience(char* inputFileName){
     
     //reading ambience file
     while(!feof(fp)){
-        fgets(line, 100, fp);
+        fgets(line, 80, fp);
         if(!isalpha(line[0])){
             x = atof(line);
             if(n == noFrames){
@@ -179,21 +180,21 @@ void processWord(long int word_s, long int word_e, double energy[], double zcr[]
     //printf("\nfricative cnt: %d, size: %d\ns", fctv_cnt, size);
 
     //decision
-    if(fctv_cnt >= size * 0.2)
-		printf("---->Yes\n");
+    if(fctv_cnt >= size * 0.25)
+		printf("----> Yes\n");
 	else
-		printf("---->No\n");
+		printf("----> No\n");
 }
 
 //this function is called for seggregating the words from the input file, it will mark word start and word end and subsequently process the word
 void word_seggregation(double* ambAvg, char* inputFileName){
     FILE *ip;
-	char line[100];
+	char line[80];
     //reading of the energy and zcr value frame wise
     double energy[10000], zcr[10000];
 
-    /* flag: word_start for index of the first observation of the word
-     * flag: word_end for index of the last observation of the word
+    /* word_start: marker for index of the first observation of the word
+     * word_end: marker for index of the last observation of the word
      * lastIndex tracks the last index where the marker should be placed for word
     */
     long int word_start = -1, word_end = -1, lastIndex = 0, n=0, total_frame = 0;
@@ -208,7 +209,7 @@ void word_seggregation(double* ambAvg, char* inputFileName){
 
     //reading the normalized word file and filling the energy and zcr array
     while(!feof(ip)){
-        fgets(line, 100, ip);
+        fgets(line, 80, ip);
         if(!isalpha(line[0])){
             x = atof(line);
             
@@ -234,8 +235,8 @@ void word_seggregation(double* ambAvg, char* inputFileName){
     //closing file
     fclose(ip);
 
-    printf("total frames: %ld\n", lastIndex);
-
+    printf("total frames: %ld\n\n", lastIndex);
+	printf("Recognized words\n");
 	long int i = 0;
 	int totalWord = 0;
     for( ; i<lastIndex-3; ++i){
@@ -251,7 +252,7 @@ void word_seggregation(double* ambAvg, char* inputFileName){
             //marking word end
             word_end = i;
 			//printf("start : %ld, end: %ld, energy at start: %lf & end: %lf\nword_start: %ld, word_end: %ld", word_start*noFrames, word_end*noFrames, energy[word_start], energy[word_end], word_start, word_end);
-			printf("%d: ", ++totalWord);
+			printf("Word %d: ", ++totalWord);
             //processing the word
             processWord(word_start, word_end, energy, zcr);
 			
@@ -270,20 +271,21 @@ void word_seggregation(double* ambAvg, char* inputFileName){
 int _tmain(int argc, _TCHAR* argv[])
 {
     //setup global values according to input
-	setupGlobal("yes_no_n.txt");
+	setupGlobal("yes_no.txt");
 
     //normalizing the input word data
-    normalize_data("yes_no_n.txt", "normalized_yes_no.txt");
+    normalize_data("yes_no.txt", "normalized_yes_no.txt");
 
     //normalizing the ambience data
-    normalize_data("n_ambience.txt", "normalized_ambience.txt");
+    normalize_data("ambience.txt", "normalized_ambience.txt");
 
     //counting avg energy and zcr of the normalized ambience data
     double* ambience_avg = countAvgAmbience("normalized_ambience.txt");
-    printf("ambience avg energy: %lf, avg zcr: %lf\n", ambience_avg[0], ambience_avg[1]);
+    printf("ambience avg energy: %lf, avg zcr: %lf\n\n", ambience_avg[0], ambience_avg[1]);
     
     //calling function to seggregate the words and echo decision
     word_seggregation(ambience_avg, "normalized_yes_no.txt");
+
 	getch();
 	return 0;
 }
