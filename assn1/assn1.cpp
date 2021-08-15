@@ -250,33 +250,96 @@ void word_seggregation(double* ambAvg, char* inputFileName){
 			printf("Word %d: ", ++totalWord);
             //processing the word
             process_word(word_start, word_end, energy, zcr);
-			
             //processing of word is completed, so we mark the markers to -1, to reuse it
             word_start = -1;
 			word_end = -1;
 		}
 	}
+	printf("\n");
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    //setup global values according to input
-	setup_global("provided_yes_no.txt");
+	int choice;
+	char wantToContinue;
+	double* ambience_avg;
 
-    //normalizing the input word data
-    normalize_data("provided_yes_no.txt", "normalized_yes_no.txt");
+	char* single_yes = "single_yes.txt";
+	char* single_no = "single_no.txt";
+	char* filename = "yes_no.txt";
+	do{
+		printf("\n\nPress 1. for testing multiple input file\nPress 2. for testing single yes input\nPress 3. for testing single no input\nPress 4. for exiting program\nenter your choice: ");
+		scanf("%d", &choice);
+		switch(choice){
+			case 1:
+				//setup global values according to input
+				setup_global(filename);
 
-    //normalizing the ambience data
-    normalize_data("ambience.txt", "normalized_ambience.txt");
+				//normalizing the input word data
+				normalize_data(filename, "normalized_yes_no.txt");
 
-    //counting avg energy and zcr of the normalized ambience data
-    double* ambience_avg = count_avg_ambience("normalized_ambience.txt");
-    printf("ambience avg energy: %lf, avg zcr: %lf\n\n", ambience_avg[0], ambience_avg[1]);
+				//normalizing the ambience data
+				normalize_data("ambience.txt", "normalized_ambience.txt");
+
+				//counting avg energy and zcr of the normalized ambience data
+				ambience_avg = count_avg_ambience("normalized_ambience.txt");
+				printf("ambience avg energy: %lf, avg zcr: %lf\n\n", ambience_avg[0], ambience_avg[1]);
     
-    //calling function to seggregate the words and echo decision
-    word_seggregation(ambience_avg, "normalized_yes_no.txt");
+				//calling function to seggregate the words and echo decision
+				word_seggregation(ambience_avg, "normalized_yes_no.txt");
+				printf("press any key to continue ");
+				getch();
+				break;
 
-	getch();
+			case 2:
+				//setup global values according to input
+				setup_global(single_yes);
+
+				//normalizing the input word data
+				normalize_data(single_yes, "normalized_yes_no.txt");
+
+				//normalizing the ambience data
+				normalize_data("ambience.txt", "normalized_ambience.txt");
+
+				//counting avg energy and zcr of the normalized ambience data
+				ambience_avg = count_avg_ambience("normalized_ambience.txt");
+				printf("ambience avg energy: %lf, avg zcr: %lf\n\n", ambience_avg[0], ambience_avg[1]);
+    
+				//calling function to seggregate the words and echo decision
+				word_seggregation(ambience_avg, "normalized_yes_no.txt");
+				printf("press any key to continue ");
+				getch();
+				break;
+
+			case 3:
+				//setup global values according to input
+				setup_global(single_no);
+
+				//normalizing the input word data
+				normalize_data(single_no, "normalized_yes_no.txt");
+
+				//normalizing the ambience data
+				normalize_data("ambience.txt", "normalized_ambience.txt");
+
+				//counting avg energy and zcr of the normalized ambience data
+				ambience_avg = count_avg_ambience("normalized_ambience.txt");
+				printf("ambience avg energy: %lf, avg zcr: %lf\n\n", ambience_avg[0], ambience_avg[1]);
+    
+				//calling function to seggregate the words and echo decision
+				word_seggregation(ambience_avg, "normalized_yes_no.txt");
+				printf("press any key to continue ");
+				getch();
+				break;
+		
+			case 4:
+				exit(0);
+
+			default:
+				printf("enter valid choice i.e. from 1, 2 and 3\n");
+				break;
+		}
+	}while(choice!=4);
+    
 	return 0;
 }
 
