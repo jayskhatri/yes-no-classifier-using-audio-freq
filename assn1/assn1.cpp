@@ -174,7 +174,7 @@ void processWord(long int word_s, long int word_e, double energy[], double zcr[]
     int fctv_cnt = 0;
 
     for(int i=word_s; i<word_e; i++){
-        if(zcr[i] > 10 && zcr[i+1] > 10){
+        if(zcr[i] > 15 && zcr[i+1] > 15){
             fctv_cnt++;
         }
     }
@@ -261,10 +261,10 @@ void word_seggregation(double* ambAvg, char* inputFileName){
 int _tmain(int argc, _TCHAR* argv[])
 {
     //setup global values according to input
-	setupGlobal("provided_yes_no.txt");
+	setupGlobal("yes_no.txt");
 
     //normalizing the input word data
-    normalize_data("provided_yes_no.txt", "normalized_yes_no.txt");
+    normalize_data("yes_no.txt", "normalized_yes_no.txt");
 
     //normalizing the ambience data
     normalize_data("ambience.txt", "normalized_ambience.txt");

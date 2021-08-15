@@ -1,4 +1,4 @@
-﻿Build started 14-08-2021 21:06:01.
+﻿Build started 14-08-2021 22:38:08.
      1>Project "C:\Users\jaykh\Documents\Visual Studio 2010\Projects\yes-no-classifier-using-audio-freq\assn1\assn1.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\assn1.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -41,4 +41,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.55
+Time Elapsed 00:00:00.57
